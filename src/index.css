@@ -1,0 +1,436 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg-color: #0f172a;
+  --bg-panel: #1e293b;
+  --bg-panel-hover: #334155;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --primary: #3b82f6;
+  --primary-hover: #2563eb;
+  --danger: #ef4444;
+  --danger-hover: #dc2626;
+  --success: #10b981;
+  --success-bg: rgba(16, 185, 129, 0.1);
+  --border: #334155;
+  --node-start: #10b981;
+  --node-task: #3b82f6;
+  --node-approval: #f59e0b;
+  --node-automated: #8b5cf6;
+  --node-end: #ef4444;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- Shared Theme Properties --- */
+
+/* Common Panel Colors */
+.app-header, 
+.sidebar, 
+.custom-node, 
+.config-panel, 
+.sandbox-panel, 
+.react-flow__controls button {
+  background-color: var(--bg-panel);
+}
+
+/* Common Backgrounds */
+body, 
+.react-flow__background {
+  background-color: var(--bg-color);
+}
+
+/* Common Borders */
+.app-header, 
+.sidebar-header, 
+.config-header, 
+.sandbox-header, 
+.react-flow__controls button {
+  border-bottom: 1px solid var(--border);
+}
+
+/* Common Hover Backgrounds */
+.sidebar-item:hover, 
+.react-flow__controls button:hover {
+  background-color: var(--bg-panel-hover);
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--text-main);
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* App Layout */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.app-header {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.app-header h1 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  background: linear-gradient(to right, #38bdf8, #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.app-main {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 260px;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  z-index: 5;
+}
+
+.sidebar-header {
+  padding: 20px;
+}
+
+.sidebar-header h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.sidebar-header p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.sidebar-items {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: grab;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.sidebar-item:active {
+  cursor: grabbing;
+}
+
+.sidebar-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.sidebar-item.start { border-left: 4px solid var(--node-start); }
+.sidebar-item.task { border-left: 4px solid var(--node-task); }
+.sidebar-item.approval { border-left: 4px solid var(--node-approval); }
+.sidebar-item.automated { border-left: 4px solid var(--node-automated); }
+.sidebar-item.end { border-left: 4px solid var(--node-end); }
+
+/* Canvas Container */
+.canvas-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.reactflow-wrapper {
+  flex: 1;
+}
+
+/* Custom Nodes */
+.custom-node {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  min-width: 150px;
+  font-size: 0.85rem;
+  color: var(--text-main);
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.2);
+  transition: box-shadow 0.2s, transform 0.2s;
+  overflow: hidden;
+}
+
+.custom-node:hover {
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+  transform: translateY(-2px);
+}
+
+.custom-node[data-selected="true"],
+.custom-node.selected {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+}
+
+.custom-node.has-error {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.5);
+}
+
+.node-error-icon {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  color: var(--danger);
+  background-color: var(--bg-color);
+  border-radius: 50%;
+  display: flex;
+}
+
+.node-header {
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.start-node .node-header { border-bottom: 2px solid var(--node-start); color: var(--node-start); }
+.task-node .node-header { border-bottom: 2px solid var(--node-task); color: var(--node-task); }
+.approval-node .node-header { border-bottom: 2px solid var(--node-approval); color: var(--node-approval); }
+.automated-node .node-header { border-bottom: 2px solid var(--node-automated); color: var(--node-automated); }
+.end-node .node-header { border-bottom: 2px solid var(--node-end); color: var(--node-end); }
+
+.react-flow__handle {
+  width: 10px;
+  height: 10px;
+  background-color: var(--text-muted);
+  border: 2px solid var(--bg-panel);
+}
+
+.react-flow__handle:hover {
+  background-color: var(--primary);
+}
+
+/* Config Panel */
+.config-panel {
+  width: 320px;
+  border-left: 1px solid var(--border);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+  z-index: 5;
+}
+
+.config-panel.empty {
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+}
+
+.config-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
+}
+
+.config-header h2 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 4px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--text-main);
+}
+
+.icon-btn.delete:hover {
+  color: var(--danger);
+  background-color: rgba(239, 68, 68, 0.1);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="date"],
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 10px 12px;
+  background-color: rgba(15, 23, 42, 0.5);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-main);
+  font-size: 0.9rem;
+  font-family: inherit;
+  transition: all 0.2s;
+}
+
+.form-group textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.form-group.checkbox {
+  flex-direction: row;
+  align-items: center;
+}
+
+.form-group.checkbox label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.form-group.checkbox input {
+  accent-color: var(--primary);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+/* Sandbox Panel */
+.sandbox-panel {
+  height: 250px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  z-index: 5;
+}
+
+.sandbox-header {
+  padding: 12px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sandbox-header h3 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.btn-simulate {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
+}
+
+.btn-simulate:hover:not(:disabled) {
+  background-color: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+.btn-simulate:disabled {
+  background-color: var(--border);
+  color: var(--text-muted);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.sandbox-content {
+  flex: 1;
+  padding: 16px 24px;
+  overflow-y: auto;
+  font-family: monospace;
+  font-size: 0.85rem;
+}
+
+.empty-logs {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.log-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.log-item {
+  padding: 6px 12px;
+  background-color: rgba(255, 255, 255, 0.02);
+  border-left: 2px solid var(--primary);
+  border-radius: 0 4px 4px 0;
+}
+
+.log-error {
+  padding: 12px;
+  background-color: rgba(239, 68, 68, 0.1);
+  color: var(--danger);
+  border-left: 3px solid var(--danger);
+  border-radius: 0 4px 4px 0;
+  font-weight: 500;
+}
+
+/* React Flow overides */
+.react-flow__controls button {
+  fill: var(--text-main);
+}
