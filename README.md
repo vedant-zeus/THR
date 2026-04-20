@@ -1,27 +1,89 @@
-# HR Workflow Designer
+#  HR - WorkFlow
 
-A mini HR Workflow Designer module built with React (Vite + TypeScript) and React Flow, enabling HR admins to visually design and test workflows such as onboarding, leave approvals, and more.
+### *Design. Automate. Scale.*
 
-## Architecture
+**HR - WorkFlow** is a premium, visual studio designed for modern HR teams to orchestrate and automate their internal processes. Whether it's onboarding a new hire, managing leave approvals, or triggering automated email sequences, this tool provides a drag-and-drop interface to build complex logic without writing a single line of code.
 
-This application adopts a clean separation of concerns:
+---
 
-- **Canvas (`components/flow`)**: Handles React Flow integration and Node drops via HTML5 native drag and drop events.
-- **Nodes (`components/nodes`)**: Highly specialized and abstracted UI layers mapped dynamically by React Flow.
-- **Config Panel (`components/config-panel`)**: Adaptable dynamic forms representing `Zustand` model mutations.
-- **Store (`store/useWorkflowStore.ts`)**: Central unified source of truth built heavily utilizing reactive sub-stores.
-- **API (`services/api.ts`)**: Mock interface layer abstracting promise-based operations simulating remote execution contexts.
-- **Sandbox (`components/sandbox`)**: Simulation panel implementing depth-first traversal to resolve cycles, dead-ends, and logging the runtime sequences natively.
+## ✨ Key Features
 
-## Design Decisions
+### 1. 🏗️ Drag-and-Drop Designer
+Build your workflows using specialized nodes:
+- **Start Node**: The entry point for your process.
+- **Task Node**: Assign human tasks to specific team members.
+- **Approval Node**: Set up decision points for managers.
+- **Automated Step**: Trigger API actions like sending emails or generating documents.
+- **End Node**: Mark the successful completion of a workflow.
 
-- **Premium CSS Native Theming**: Rejects standard overly-verbose tailwind setups and instead encapsulates logic using native CSS variables (`var(--bg-panel)`, etc.) mimicking sophisticated dark themes found in tools like modern UI editors.
-- **Zustand over Context**: Chosen for its lack of boilerplate needed to expose standard `.getState()` non-reactive helpers commonly needed within React Flow cyclic interactions, providing immense performance scaling.
-- **Simulation Validation**: Validation fires off synchronously upon Edge Connect preventing simple errors (Incoming edge to Start). Complex cycles are halted naturally during simulation runtime execution.
+### 2. 💾 Workflow Persistence
+Never lose your work. The **Workflows Tab** allows you to:
+- Name and **Save** snapshots of your canvas designs.
+- **Load** any saved workflow back onto the canvas instantly.
+- Manage a library of different process versions.
 
-## Setup Instructions
+### 3. 🧪 Real-time Simulation & Logs
+Test your workflows before they go live:
+- Run a **Simulation Engine** that traverses your graph.
+- View **Live Audit Logs** with exact timestamps for every process.
+- **Visual Validation**: The canvas automatically highlights errors (like broken paths or infinite loops) with red borders and alerts.
 
-1. `npm install`
-2. `npm run dev`
-3. Drag nodes from the sidebar onto the canvas space
-4. Connect them via the node edge handles!
+### 4. 🌓 Theme Toggle
+Accessible from everywhere! Toggle the mood of your workspace from the top-right corner of any page.
+
+---
+
+## 🎨 Dual Theme Experience
+
+The entire studio is built with a **Premium Dual Theme Engine**. Switch between a sleek, high-tech **Dark Mode** and a professional, clean **Light Mode** with a single click.
+
+![Landing Page Dark](./screenshots/landing_dark.png)
+*Landing Page - Immersive Dark Mode*
+
+![Landing Page Light](./screenshots/landing_light.png)
+*Landing Page - Crisp Light Mode*
+
+---
+
+## 🛠️ Tech Stack
+
+Built with a modern, high-performance stack for a smooth user experience:
+
+- **Frontend**: [React](https://reactjs.org/) + [Vite](https://vitejs.dev/)
+- **Visual Programming**: [React Flow](https://reactflow.dev/) (Industry standard for node-based UIs)
+- **State Management**: [Zustand](https://github.com/pmndrs/zustand) (Lightweight and reactive)
+- **Styling**: [Vanilla CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) (Custom-built design system with modern CSS variables)
+- **Icons**: [Lucide React](https://lucide.dev/) (Beautiful and consistent iconography)
+- **Language**: [TypeScript](https://www.typescriptlang.org/) (Strictly typed for reliability)
+
+---
+
+## 📸 In Action
+
+### The Designer Studio
+![Designer Dark](./screenshots/designer_dark.png)
+*The core design engine in Dark Mode*
+
+![Designer Light](./screenshots/designer_light.png)
+*The core design engine in Light Mode*
+
+### Managing Workflows
+![Workflows Tab](./screenshots/workflows.png)
+*Saved workflows library in the sidebar*
+
+### Simulation Engine
+![Simulation Logs](./screenshots/simulation.png)
+*Timestamped logs providing a full execution trail*
+
+---
+
+## 🚀 Getting Started
+
+1. **Clone the repo**
+2. **Install dependencies**: `npm install`
+3. **Run locally**: `npm run dev`
+4. **Build for production**: `npm run build`
+
+---
+
+Built for **HR Team Efficiency** by **Vedant Sanjay Amrutkar**.
