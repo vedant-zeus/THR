@@ -1,66 +1,54 @@
-#  HR - WorkFlow
-
+# HR — WorkFlow
 ### *Design. Automate. Scale.*
+
+![HR Automation](https://img.shields.io/badge/HR-Automation-blue?style=flat-square)
+![React + Vite](https://img.shields.io/badge/React-Vite-green?style=flat-square)
+![TypeScript](https://img.shields.io/badge/Language-TypeScript-yellow?style=flat-square)
 
 **HR - WorkFlow** is a premium, visual studio designed for modern HR teams to orchestrate and automate their internal processes. Whether it's onboarding a new hire, managing leave approvals, or triggering automated email sequences, this tool provides a drag-and-drop interface to build complex logic without writing a single line of code.
 
 ---
 
-##  Key Features
+## ✨ Key Features
 
-### 1. Drag-and-Drop Designer
-Build your workflows using specialized nodes:
-- **Start Node**: The entry point for your process.
-- **Task Node**: Assign human tasks to specific team members.
-- **Approval Node**: Set up decision points for managers.
-- **Automated Step**: Trigger API actions like sending emails or generating documents.
-- **End Node**: Mark the successful completion of a workflow.
-
-### 2. Workflow Persistence
-Never lose your work. The **Workflows Tab** allows you to:
-- Name and **Save** snapshots of your canvas designs.
-- **Load** any saved workflow back onto the canvas instantly.
-- Manage a library of different process versions.
-
-### 3. Real-time Simulation & Logs
-Test your workflows before they go live:
-- Run a **Simulation Engine** that traverses your graph.
-- View **Live Audit Logs** with exact timestamps for every process.
-- **Visual Validation**: The canvas automatically highlights errors (like broken paths or infinite loops) with red borders and alerts.
-
-### 4. Theme Toggle
-Accessible from everywhere! Toggle the mood of your workspace from the top-right corner of any page.
+<table>
+  <tr>
+    <td align="center" width="160"><b>🖱️ Drag-and-Drop<br>Designer</b><br><sub>Build workflows with specialized nodes — Start, Task, Approval, Automated Step, and End.</sub></td>
+    <td align="center" width="160"><b>💾 Workflow<br>Persistence</b><br><sub>Name, save, and reload workflow snapshots from a managed library.</sub></td>
+    <td align="center" width="160"><b>▶️ Simulation<br>Engine</b><br><sub>Traverse and test your graph with live, timestamped audit logs before going live.</sub></td>
+    <td align="center" width="160"><b>⚠️ Error<br>Detection</b><br><sub>Canvas highlights broken paths and infinite loops in real time.</sub></td>
+    <td align="center" width="160"><b>◐ Dual<br>Theme</b><br><sub>Switch between immersive Dark Mode and crisp Light Mode from any page.</sub></td>
+  </tr>
+</table>
 
 ---
 
-## Dual Theme Experience
+## 🔷 Node Types
 
-The entire studio is built with a **Premium Dual Theme Engine**. Switch between a sleek, high-tech **Dark Mode** and a professional, clean **Light Mode** with a single click.
-
-![Landing Page Dark](./screenshots/landing_dark.png)
-*Landing Page - Immersive Dark Mode*
-
-![Landing Page Light](./screenshots/landing_light.png)
-*Landing Page - Crisp Light Mode*
+| Node | Color | Purpose |
+|------|-------|---------|
+| **Start Node** | 🔵 Blue | The entry point for every process |
+| **Task Node** | 🟢 Teal | Assign human tasks to specific team members |
+| **Approval Node** | 🟡 Amber | Decision points for manager sign-off |
+| **Automated Step** | 🟠 Coral | Trigger API actions like sending emails or generating documents |
+| **End Node** | 🟢 Green | Marks successful process completion |
 
 ---
 
 ## 🛠️ Tech Stack
 
-Built with a modern, high-performance stack for a smooth user experience:
-
-- **Frontend**: [React](https://reactjs.org/) + [Vite](https://vitejs.dev/)
-- **Visual Programming**: [React Flow](https://reactflow.dev/) (Industry standard for node-based UIs)
-- **State Management**: [Zustand](https://github.com/pmndrs/zustand) (Lightweight and reactive)
-- **Styling**: [Vanilla CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) (Custom-built design system with modern CSS variables)
-- **Icons**: [Lucide React](https://lucide.dev/) (Beautiful and consistent iconography)
-- **Language**: [TypeScript](https://www.typescriptlang.org/) (Strictly typed for reliability)
+| Layer | Technology | Purpose |
+|-------|-----------|---------|
+| **Frontend** | [React](https://reactjs.org/) + [Vite](https://vitejs.dev/) | UI framework & build tool |
+| **Visual Programming** | [React Flow](https://reactflow.dev/) | Node-based canvas engine |
+| **State Management** | [Zustand](https://github.com/pmndrs/zustand) | Lightweight reactive state |
+| **Styling** | Vanilla CSS | Custom design system with CSS variables |
+| **Icons** | [Lucide React](https://lucide.dev/) | Consistent iconography |
+| **Language** | [TypeScript](https://www.typescriptlang.org/) | Strictly typed for reliability |
 
 ---
 
 ## 📂 Project Architecture
-
-We take pride in a clean, modular, and scalable folder structure that separates concerns and makes the codebase a joy to work with.
 
 ```text
 src/
@@ -84,46 +72,46 @@ src/
 ## 📸 In Action
 
 ### The Designer Studio
-![Designer Dark](./screenshots/designer_dark.png)
-*The core design engine in Dark Mode*
+| Dark Mode | Light Mode |
+|-----------|------------|
+| ![Designer Dark](./screenshots/designer_dark.png) | ![Designer Light](./screenshots/designer_light.png) |
 
-![Designer Light](./screenshots/designer_light.png)
-*The core design engine in Light Mode*
-
-### Managing Workflows
-![Workflows Tab](./screenshots/workflows.png)
-*Saved workflows library in the sidebar*
-
-### Simulation Engine
-![Simulation Logs](./screenshots/simulation.png)
-*Timestamped logs providing a full execution trail*
-
-### Error Detection
-![Error Detection](./screenshots/error_detection.png)
-*Error detection highlighting broken paths and infinite loops*
+### Simulation & Error Detection
+| Simulation Logs | Error Detection |
+|-----------------|-----------------|
+| ![Simulation](./screenshots/simulation.png) | ![Error Detection](./screenshots/error_detection.png) |
 
 ---
 
-##  Getting Started
+## 🚀 Getting Started
 
-1. **Clone the repo**
-2. **Install dependencies**: `npm install`
-3. **Run locally**: `npm run dev`
-4. **Build for production**: `npm run build`
+```bash
+# 1. Clone the repo
+git clone <your-repo-url>
 
----
+# 2. Install dependencies
+npm install
 
-##  What would I do with more time in hand?
+# 3. Run locally
+npm run dev
 
-If I had more time, I would transform this project into a **Full-Stack Enterprise Application**. My roadmap would include:
-
-- **End-to-End Automation**: Converting the mock simulation into a real engine that interacts with live services (e.g., sending real automated emails to selected interns via SendGrid or AWS SES).
-- **Persistent Backend**: Building a dedicated backend API (Node.js/Go) to handle business logic and workflow state.
-- **Scalable Databases**: Storing all workflow graphs, member data, and audit logs in a distributed database like **Cloudflare** or **Aiven Cloud** for permanent persistence.
-- **Team Collaboration**: Adding multi-user support with real-time editing and role-based access control (RBAC).
-
-That would have been my definite course of action to take this from a powerful studio to a production-ready HR automation platform.
+# 4. Build for production
+npm run build
+```
 
 ---
 
-Built for **HR Team Efficiency** by **Vedant Sanjay Amrutkar**.
+## 🗺️ Future Roadmap
+
+| Initiative | Description |
+|------------|-------------|
+| 🔵 **End-to-End Automation** | Convert mock simulation into a real engine with live service integrations (SendGrid, AWS SES) |
+| 🟢 **Persistent Backend** | Dedicated API (Node.js / Go) for business logic and workflow state management |
+| 🟡 **Scalable Databases** | Distribute workflow graphs, member data, and audit logs on Cloudflare or Aiven Cloud |
+| 🟠 **Team Collaboration** | Multi-user real-time editing with role-based access control (RBAC) |
+
+---
+
+<div align="center">
+  <sub>Built for <b>HR Team Efficiency</b> by <b>Vedant Sanjay Amrutkar</b></sub>
+</div>
