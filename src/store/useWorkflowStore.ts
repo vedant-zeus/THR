@@ -16,6 +16,8 @@ interface WorkflowState {
   nodes: HRNode[];
   edges: HREdge[];
   selectedNodeId: string | null;
+  view: 'landing' | 'designer';
+  setView: (view: 'landing' | 'designer') => void;
 
   // Flow handlers
   onNodesChange: (changes: NodeChange[]) => void;
@@ -28,6 +30,12 @@ interface WorkflowState {
   setSelectedNodeId: (id: string | null) => void;
   deleteNode: (id: string) => void;
   clearWorkflow: () => void;
+  savedWorkflows: Array<{ id: string; name: string; nodes: HRNode[]; edges: HREdge[] }>;
+  saveWorkflow: (name: string) => void;
+  loadWorkflow: (id: string) => void;
+  deleteWorkflow: (id: string) => void;
+  theme: 'dark' | 'light';
+  toggleTheme: () => void;
 }
 
 const initialNodes: HRNode[] = [];
@@ -37,6 +45,10 @@ export const useWorkflowStore = create<WorkflowState>((set, get) => ({
   nodes: initialNodes,
   edges: initialEdges,
   selectedNodeId: null,
+  view: 'landing',
+  setView: (view: 'landing' | 'designer') => {
+    set({ view });
+  },
 
   onNodesChange: (changes: NodeChange[]) => {
     set({
@@ -88,5 +100,41 @@ export const useWorkflowStore = create<WorkflowState>((set, get) => ({
 
   clearWorkflow: () => {
     set({ nodes: [], edges: [], selectedNodeId: null });
+  },
+
+  savedWorkflows: [],
+
+  saveWorkflow: (name: string) => {
+    const newWorkflow = {
+      id: uuidv4(),
+      name,
+      nodes: [...get().nodes],
+      edges: [...get().edges],
+    };
+    set({
+      savedWorkflows: [newWorkflow, ...get().savedWorkflows],
+    });
+  },
+
+  loadWorkflow: (id: string) => {
+    const workflow = get().savedWorkflows.find((w) => w.id === id);
+    if (workflow) {
+      set({
+        nodes: [...workflow.nodes],
+        edges: [...workflow.edges],
+        selectedNodeId: null,
+      });
+    }
+  },
+
+  deleteWorkflow: (id: string) => {
+    set({
+      savedWorkflows: get().savedWorkflows.filter((w) => w.id !== id),
+    });
+  },
+
+  theme: 'dark',
+  toggleTheme: () => {
+    set({ theme: get().theme === 'dark' ? 'light' : 'dark' });
   },
 }));

@@ -20,8 +20,10 @@ export const simulateWorkflow = async (nodes: HRNode[], edges: HREdge[]): Promis
         const startNode = nodes.find(n => n.type === 'start');
         if (!startNode) throw new Error("Workflow must have a Start node.");
 
+        const getTimestamp = () => new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        
         const logs: string[] = [];
-        logs.push(`[Start] Initiated workflow: ${startNode.data.title || 'Untitled'}`);
+        logs.push(`[${getTimestamp()}] [Start] Initiated workflow: ${startNode.data.title || 'Untitled'}`);
 
         let currentNode = startNode;
         const visited = new Set<string>();
@@ -33,17 +35,17 @@ export const simulateWorkflow = async (nodes: HRNode[], edges: HREdge[]): Promis
           visited.add(currentNode.id);
 
           if (currentNode.type !== 'start') {
-            logs.push(`[${currentNode.type.toUpperCase()}] Executed step: ${currentNode.data.label || currentNode.id}`);
+            logs.push(`[${getTimestamp()}] [${currentNode.type.toUpperCase()}] Executed step: ${currentNode.data.label || currentNode.id}`);
           }
 
           if (currentNode.type === 'end') {
-            logs.push(`[End] Workflow completed successfully.`);
+            logs.push(`[${getTimestamp()}] [End] Workflow completed successfully.`);
             break;
           }
 
           const outgoingEdges = edges.filter(e => e.source === currentNode.id);
           if (outgoingEdges.length === 0) {
-            logs.push(`[Warning] Reached dead end at node: ${currentNode.data.label}`);
+            logs.push(`[${getTimestamp()}] [Warning] Reached dead end at node: ${currentNode.data.label}`);
             break;
           }
 
